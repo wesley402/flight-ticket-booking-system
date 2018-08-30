@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% block content %}
+
+<style>
+body, html {
+    margin-top:50px;
+}
+
+table, h3 {
+    margin-left:20px;
+}
+</style>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <h3 style="font-size:30px">Your History Order</h3></br>
+    <form method="POST">{% csrf_token %}
+    <table style="width:100%">
+      <tr>
+        <th>Order number</th>
+        <th>Order date</th>
+        <th>Total fare</th>
+        <th>status</th>
+        <th>Detail</th>
+
+      </tr>
+      {% for list in orderLists %}
+      <tr>
+        <td>{{list.reservation_no}}</td>
+        <td>{{list.reservation_date}}</td>
+        <td>{{list.total_fare}}</td>
+        {% if list.reservation_status == 'A' %}
+        <td>Accepted</td>
+        {% else %}
+        <td>Cancelled</td>
+        {% endif %}
+        <td><button name=detail value="{{list.reservation_no}}">view detail</button></td>
+      </tr>
+      {% endfor %}
+    </table>
+    </form>
+
+
+</body>
+</html>
+
+{% endblock content %}

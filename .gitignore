@@ -1,0 +1,8 @@
+# ignore keys for AWS and Django
+keys/
+
+# ignore pyc
+*.pyc
+
+# igore ds_store
+*.DS_Store

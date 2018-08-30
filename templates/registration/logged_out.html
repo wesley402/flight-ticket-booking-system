@@ -1,0 +1,14 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+
+{% block branding %}
+<h1 id="site-name" style="display:inline"><a href="{% url 'admin:index' %}">Manager Page</a></h1>
+{% endblock %}
+
+{% block content %}
+
+<p>{% trans "Have a good day!" %}</p>
+
+<p><a href="{% url 'admin:index' %}">{% trans 'Log in again' %}</a></p>
+
+{% endblock %}

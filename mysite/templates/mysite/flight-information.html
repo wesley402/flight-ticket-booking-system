@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <form action="{% url 'checkout' %}" method="GET">{% csrf_token %}
+    <fieldset>
+        <legend> YOUR FLIGHT ORDER </legend>
+        <li name="flight_no" value="{{order.flight_no}}">{{order.flight_no}}</li>
+        <li name="src_airport" value="{{order.src_airport}}">{{order.src_airport}}</li>
+        <li name="src_time" value="{{order.src_time}}">{{order.src_time}}</li>
+        <li name="dst_airport" value="{{order.dst_airport}}">{{order.dst_airport}}</li>
+        <li name="dst_time" value="{{order.dst_time}}">{{order.dst_time}}</li>
+        <div>
+            <button type="submit" name=table_no value=""> CONFIRM YOUR FLIGHT</button>
+        </div>
+    </fieldset>
+    </form>
+
+
+</body>
+</html>

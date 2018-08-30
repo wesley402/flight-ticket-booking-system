@@ -1,0 +1,37 @@
+{% extends "admin/base.html" %}
+{% load i18n static %}
+
+{% block branding %}
+<h1 id="site-name" style="display:inline">
+	<a href="{% url 'admin:index' %}">Manager Page</a>
+</h1>
+{% endblock %}s
+
+{% block content %}
+<form method="GET">
+<span>Most active flights within &nbsp</span><input name="month" type="text"></input><span>&nbsp months</span>
+<button type="submmit">SUBMIT</button>
+</form></br></br>
+
+<table class="table table-hover">
+  <thead class="thead-dark">
+    <tr>
+	  <th scope="col">Flight Number</th>
+	  <th scope="col">From</th>
+	  <th scope="col">To</th>
+	  <th scope="col">Number of Reservations</th>
+
+    </tr>
+  </thead>
+	{% for a in tuples %}
+  <tbody>
+	  <td>{{a.0}}{{a.1}}</td>
+	  <td>{{a.2}}</td>
+	  <td>{{a.3}}</td>
+	  <td>{{a.4}}</td>
+
+  </tbody>
+  {% endfor %}
+</table>
+
+{% endblock %}

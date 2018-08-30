@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+{% load static %}
+
+<html>
+<title>Flight Booking</title>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
+
+<body>
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar w3-white w3-wide w3-padding w3-card">
+    <!-- Float links to the right. Hide them on small screens -->
+    <a href="{% url "home" %}" class="w3-bar-item w3-button"><b>FLIGHT SEARCH</b></a>
+    <div class="w3-right w3-hide-small">
+      {% if not request.user.is_authenticated %}
+      <a href="{% url "signin" %}" class="w3-bar-item w3-button">Sign in</a>
+      <a href="{% url "signup" %}" class="w3-bar-item w3-button">Sign up</a>
+      {% else %}
+      <a href="{% url "profile" %}" class="w3-bar-item w3-button">My profile</a>
+      <a href="{% url "order" %}" class="w3-bar-item w3-button">My order</a>
+      <a href="{% url "signout" %}" class="w3-bar-item w3-button">Sign out</a>
+      {% endif %}
+    </div>
+  </div>
+
+</div>
+{% block content %}{% endblock content %}
+
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+{% extends "admin/base.html" %}
+{% load i18n static %}
+
+{% block branding %}
+<h1 id="site-name" style="display:inline">
+	<a href="{% url 'admin:index' %}">Manager Page</a>
+</h1>
+{% endblock %}s
+
+{% block content %}
+<form method="GET">
+<label>Search all flights for a airport:</label></br>
+<input name="search" type="text" placeholder"Type a airport id"></input></br>
+<button type="submmit">SUBMIT</button>
+</form></br></br>
+
+<table class="table table-hover">
+  <thead class="thead-dark">
+    <tr>
+	  <th scope="col">Flight Number</th>
+	  <th scope="col">From</th>
+	  <th scope="col">To</th>
+	  <th scope="col">Dep Time</th>
+	  <th scope="col">Arv Time</th>
+	  <th scope="col">Arv Days</th>
+	  <th scope="col">Num of Seats</th>
+	  <th scope="col">Num of Stops</th>
+	  <th scope="col">Working Days</th>
+	  <th scope="col">Base Fare</th>
+	  <th scope="col">Flying Time</th>
+
+    </tr>
+  </thead>
+	{% for a in tuples %}
+  <tbody>
+	  <td>{{a.3}}{{a.1}}</td>
+	  <td>{{a.4}}</td>
+	  <td>{{a.5}}</td>
+	  <td>{{a.8}}</td>
+	  <td>{{a.9}}</td>
+	  <td>{{a.10}}</td>
+	  <td>{{a.6}}</td>
+	  <td>{{a.7}}</td>
+	  <td>{{a.11}}</td>
+	  <td>{{a.12}}</td>
+	  <td>{{a.14|time:"H"}}h {{a.14|time:"i"}} m</td>
+  </tbody>
+  {% endfor %}
+</table>
+
+{% endblock %}

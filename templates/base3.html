@@ -1,0 +1,17 @@
+{% load static %}
+<!--DOCTYPE html -->
+<html>
+<div class='container'>
+    <ul class='breadcrumb' style="text-align:right" "list-style-type: none">
+
+        {% if not request.user.is_authenticated %}
+        <li class='pull-right' style="list-style-type: none"><a href='{% url "signup" %}'>Sign_up |</a></li>
+        <li class='pull-right' style="list-style-type: none"><a href='{% url "signup" %}'>Sign_up |</a></li>
+        <li class='pull-right' style="list-style-type: none"><a href='{% url "signin" %}'>Sign_in</a></li>
+        {% else %}
+        <li class='pull-right' style="list-style-type: none"><a href='{% url "signout" %}'>Sign_out</a></li>
+        {% endif %}
+    </ul>
+{% block content %}{% endblock content %}
+</div>
+</html>

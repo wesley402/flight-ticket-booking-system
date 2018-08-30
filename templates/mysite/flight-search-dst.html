@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+body, html {
+    margin-top:40px;
+}
+
+</style>
+
+<html>
+<body>
+{% if flex_day == '0' %}
+<h5><strong>Your departure date is: {{request.session.raw_dep_date}}</strong></h5>
+{% else %}
+<h5><strong>Sorry, we don't have flight on your designated date. Our suggested departure date is: {{request.session.raw_dep_date}}</strong></h5>
+{% endif %}
+{% for table in directOnewayTrip_lists %}
+    {% if request.session.trip == 'oneway' %}
+    <form action="{% url 'flight-information' %}" method="GET">{% csrf_token %}
+    {% else %}
+    <form action="{% url 'flight-search-rtn' %}" method="GET">{% csrf_token %}
+    {% endif %}
+    <fieldset>
+        <input type="hidden" name="num_of_stops" value="0">
+        <span>I/D: {{table.10}}</span></br>
+        <span>Flight no: {{table.0}}{{table.1}}</span></br>
+        <span>Flying time: {{table.11|time:"H"}} h {{table.11|time:"i"}} m</span></br>
+        <span name="src_airport">Route: {{table.2}}</span>
+        <span name="dash"> - </span>
+        <span name="dst_airport">{{table.3}}</span>
+        <span name="num_of_stops">(0 stop)</span></br>
+        <span name="src_time" value="{{table.4}}">Time: {{table.4}}</span>
+        <span name="dash"> - </span>
+        <span name="dst_time">{{table.5}}</span>
+        <span name="arrive_day" style="color:red">+{{table.8}}</span></br>
+        <span name="cabin">Class : {{request.session.cabin}}</span></br>
+        <span name="price">Fare: {{table.7}}</span></br></br>
+        <div>
+            <button type="submit" name=table_index value="{{forloop.counter0}}">SELECT</button>
+        </div>
+    </fieldset>
+    </form>
+{% endfor %}
+
+{% for table in oneStopOnewayTrip_lists %}
+    {% if request.session.trip == 'oneway' %}
+    <form action="{% url 'flight-information' %}" method="GET">{% csrf_token %}
+    {% else %}
+    <form action="{% url 'flight-search-rtn' %}" method="GET">{% csrf_token %}
+    {% endif %}
+    <fieldset>
+        <input type="hidden" name="num_of_stops" value="1">
+        <span>I/D: {{table.21}}</span></br>
+        <span >Flight no: {{table.0}}{{table.1}} & {{table.9}}{{table.10}}</span></br>
+        <span>Flying time: {{table.22}} h </span></br>
+        <span name="src_airport">Route: {{table.2}}</span>
+        <span name="dash"> - </span>
+        <span> {{table.20|time:"H"}} h {{table.20|time:"i"}} m</span>
+        <span name="stop1_airport">in {{table.3}}</span>
+        <span name="dash"> - </span>
+        <span name="dst_airport">{{table.12}}</span>
+        <span name="num_of_stops">(1 stop)</span></br>
+        <span name="src_time">Time: {{table.4}}</span>
+        <span name="dash"> - </span>
+        <span name="dst_time">{{table.14}}</span>
+        <span name="arrive_day" style="color:red">+{{table.18}}</span></br>
+        <span name="cabin">Class : {{request.session.cabin}}</span></br>
+        <span name="price">Fare: {{table.19}}</span></br></br>
+        <div>
+            <button type="submit" name=table_index value="{{forloop.counter0}}">SELECT</button>
+        </div>
+    </fieldset>
+    </form>
+{% endfor %}
+
+
+
+</body>
+</html>
+
+{% endblock content %}

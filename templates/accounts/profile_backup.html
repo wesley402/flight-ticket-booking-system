@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% block content %}
+<style>
+body, html {
+    margin-top:40px;
+
+}
+form, h1 {
+    margin-left:30px;
+}
+
+</style>
+<html>
+<body>
+    <form action="" method="POST">{% csrf_token %}
+    <fieldset>
+        <legend><strong> Your Profile </strong></legend>
+        <label class="l_profile" name="first-name-label">Username</label></br>
+        <label class="l_profile" name="first-name-label">Acoount Creation Date</label></br>
+        <label class="l_profile" name="last-name-label">Last name</label></br>
+        <input type="text" name="last-name" class="profile" value="{{user.last_name}}"></br>
+        <label class="l_profile" name="first-name-label">First name</label></br>
+        <input type="text" name="first-name" class="profile" value="{{user.first_name}}"></br>
+        <label class="l_profile" name="last-name-label">Last name</label></br>
+        <input type="text" name="last-name" class="profile" placeholder="" ></br>
+        <label class="l_profile" name="Adress">Address</label></br>
+        <input type="text" name="first-name" class="profile" placeholder=""></br>
+        <label class="name" name="last-name-label">City</label></br>
+        <input type="text" name="last-name" class="profile" placeholder="" ></br>
+        <label class="l_profile" name="first-name-label">State</label></br>
+        <input type="text" name="first-name" class="profile" placeholder=""></br>
+        <label class="l_profile" name="last-name-label">Zip Code</label></br>
+        <input type="text" name="last-name" class="profile" placeholder="" ></br>
+        <label class="l_profile" name="last-name-label">Phone No</label></br>
+        <input type="text" name="last-name" class="profile" placeholder="" ></br>
+        <label class="l_profile" name="last-name-label">Email Address</label></br>
+        <input type="text" name="last-name" class="profile" placeholder="" ></br>
+        <label class="l_profile" name="last-name-label">Credit Card No</label></br>
+        <input type="text" name="last-name" class="profile" placeholder="" ></br>
+        <label class="l_profile" name="last-name-label">Preferences</label></br>
+        <input type="text" name="last-name" class="profile" placeholder="" ></br>
+    </fieldset>
+    <div>
+        <button type="submit" name=table_index>SUBMIT</button>
+    </div>
+    </form>
+
+
+</body>
+</html>
+{% endblock content %}

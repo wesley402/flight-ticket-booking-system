@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+<style>
+body, html {
+    margin-top:60px;
+
+}
+
+
+</style>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <form method="POST">{% csrf_token %}
+            <h1>Profile</h1>
+            <label class="l_profile" name="first-name-label">Username</label>
+            <p>{{ user.username }}</p>
+            <label class="l_profile" name="first-name-label">Created date</label>
+            <p>{{ user.date_joined }}</p>
+            {{ user_form|crispy }}
+            {{ profile_form|crispy }}
+            </br>
+            <button type="submit" name = "save" value="subit">Submit</button>
+
+        </form>
+    </div>
+</body>
+</html>
+
+
+{% endblock content %}

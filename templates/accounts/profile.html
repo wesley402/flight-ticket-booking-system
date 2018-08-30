@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+<style>
+body, html {
+    margin-top:60px;
+
+}
+
+
+</style>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class = "container">
+    <h1>Profile</h1>
+    <label class="l_profile" name="first-name-label">Username</label></br>
+    <p>{{ user.username }}</p>
+    <label class="l_profile" name="first-name-label">Created date</label></br>
+    <p>{{ user.date_joined }}</p>
+    <label class="l_profile" name="last-name-label">Email address</label></br>
+    <p>{{ user.email }}</p>
+    <label class="l_profile" name="first-name-label">First name</label></br>
+    <p>{{ user.first_name }}</p>
+    <label class="l_profile" name="last-name-label">Last name</label></br>
+    <p>{{ user.last_name }}</p>
+    <label class="l_profile" name="Adress">Address</label></br>
+    <p>{{ profile.address }}</p>
+    <label class="name" name="last-name-label">City</label></br>
+    <p>{{ profile.city }}</p>
+    <label class="l_profile" name="first-name-label">State</label></br>
+    <p>{{ profile.state }}</p>
+    <label class="l_profile" name="last-name-label">Zip Code</label></br>
+    <p>{{ profile.zip_code }}</p>
+    <label class="l_profile" name="last-name-label">Telephone</label></br>
+    <p>{{ profile.telephone }}</p>
+    <label class="l_profile" name="last-name-label">Credit card</label></br>
+    <p>{{ profile.credit_card }}</p>
+    <label class="l_profile" name="last-name-label">Seat Preference</label></br>
+    <p>{{ profile.seat_preference }}</p>
+    <label class="l_profile" name="last-name-label">Meal Preference</label></br>
+    <p>{{ profile.meal_preference }}</p>
+    <button type="submit" name = "edit" value=""><a href="{% url 'edit_profile' %}">Edit</button>
+</body>
+</html>
+
+
+{% endblock content %}

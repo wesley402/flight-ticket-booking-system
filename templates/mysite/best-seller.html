@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+body, html {
+    margin-top:50px;
+
+}
+h1 {
+	color:#000;
+	font-size:50px;
+	margin-top:50px;
+	text-align:center;
+}
+
+table {
+    font-size:12px;
+    margin-left:20px;
+    width: 95%;
+}
+
+</style>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+
+        <h1>Our Best-seller Flight</h1></br>
+
+        <table>
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Airline Name</th>
+            <th>Flight No</th>
+            <th>Departure Place</th>
+            <th>Departure Airport</th>
+            <th>Destination Place</th>
+            <th>Destination Airport</th>
+            <th>Reserved Times</th>
+
+          </tr>
+        </thead>
+          {% for list in bestSellers %}
+          <tbody>
+          <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{list.0}}</td>
+            <td>{{list.1}}</td>
+            <td>{{list.2}}</td>
+            <td>{{list.3}}</td>
+            <td>{{list.4}}</td>
+            <td>{{list.5}}</td>
+            <td>{{list.6}}</td>
+          </tr>
+          </tbody>
+          {% endfor %}
+        </table>
+
+
+</body>
+</html>
+
+
+{% endblock content %}

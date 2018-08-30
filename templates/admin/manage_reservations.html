@@ -1,0 +1,70 @@
+{% extends "admin/base.html" %}
+{% load i18n static %}
+
+{% block branding %}
+<h1 id="site-name" style="display:inline">
+	<a href="{% url 'admin:index' %}">Manager Page</a>
+</h1>
+{% endblock %}
+
+{% block content%}
+<form method="GET">
+<label>Search reservations by flight number:</label>
+<input name ="flight_no" type="text" placeholder="type a flight number"></input><button type="submit">SUBMIT</button></br>
+</form>
+<form method="GET">
+<label>Search reservations by last name:</label>
+<input name ="last_name" type="text" placeholder="type a last name"></input><button type="submit">SUBMIT</button>
+</form>
+{% if search_type == 'last_name'%}
+<table class="table table-hover">
+  <thead class="thead-dark">
+    <tr>
+	  <th scope="col">Last Name</th>
+	  <th scope="col">Username</th>
+      <th scope="col">Reservation Number</th>
+      <th scope="col">Reservation Date</th>
+      <th scope="col">Reservation Status</th>
+      <th scope="col">Total Fare</th>
+    </tr>
+  </thead>
+	{%for a in reservation_tuples %}
+  <tbody>
+	  <td>{{a.0}}</td>
+	  <td>{{a.1}}</td>
+	  <td>{{a.2}}</td>
+	  <td>{{a.3}}</td>
+	  <td>{{a.4}}</td>
+	  <td>{{a.5}}</td>
+  </tbody>
+  {% endfor %}
+</table>
+
+{% elif search_type == 'flight_no'%}
+<table class="table table-hover">
+  <thead class="thead-dark">
+    <tr>
+	  <th scope="col">Flight No</th>
+	  <th scope="col">Src Airport</th>
+	  <th scope="col">Dst Airport</th>
+      <th scope="col">Reservation Number</th>
+      <th scope="col">Reservation Date</th>
+      <th scope="col">Reservation Status</th>
+      <th scope="col">Sale Amount</th>
+    </tr>
+  </thead>
+	{%for a in reservation_tuples %}
+  <tbody>
+	  <td>{{a.0}}</td>
+	  <td>{{a.1}}</td>
+	  <td>{{a.2}}</td>
+	  <td>{{a.3}}</td>
+	  <td>{{a.4}}</td>
+	  <td>{{a.5}}</td>
+	  <td>{{a.6}}</td>
+	  <td>{{a.7}}</td>
+  </tbody>
+  {% endfor %}
+</table>
+{% endif %}
+{% endblock content%}

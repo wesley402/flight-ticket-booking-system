@@ -1,0 +1,77 @@
+{% extends "admin/base.html" %}
+{% load i18n static %}
+
+{% block branding %}
+<h1 id="site-name" style="display:inline">
+	<a href="{% url 'admin:index' %}">Manager Page</a>
+</h1>
+{% endblock %}
+
+{% block content %}
+<form method="GET">
+<button name="search" type="submmit" value="by_flight">By Flight Number</button>
+<button name="search" type="submmit" value="by_dst_city">By Destination City</button>
+<button name="search" type="submmit" value="by_customer">By Customer</button>
+</form></br></br>
+
+{% if search_type == 'by_flight'%}
+<table class="table table-hover">
+  <thead class="thead-dark">
+    <tr>
+	  <th scope="col">Flight Number</th>
+	  <th scope="col">Revunue</th>
+    </tr>
+  </thead>
+	{%for a in sales_tuples %}
+  <tbody>
+	  <td>{{a.0}}</td>
+	  <td>{{a.1}}</td>
+  </tbody>
+  {% endfor %}
+</table>
+
+{% elif search_type == 'by_dst_city'%}
+<table class="table table-hover">
+  <thead class="thead-dark">
+    <tr>
+	  <th scope="col">City</th>
+	  <th scope="col">Dst Airport</th>
+      <th scope="col">Revenue</th>
+    </tr>
+  </thead>
+	{%for a in sales_tuples %}
+  <tbody>
+	  <td>{{a.1}}</td>
+	  <td>{{a.0}}</td>
+	  <td>{{a.2}}</td>
+  </tbody>
+  {% endfor %}
+</table>
+
+
+{% elif search_type == 'by_customer'%}
+<table class="table table-hover">
+  <thead class="thead-dark">
+    <tr>
+	  <th scope="col">Username</th>
+	  <th scope="col">First Name</th>
+	  <th scope="col">Last Name</th>
+      <th scope="col">Number of Reservations</th>
+      <th scope="col">Revenue</th>
+    </tr>
+  </thead>
+	{%for a in sales_tuples %}
+  <tbody>
+	  <td>{{a.0}}</td>
+	  <td>{{a.1}}</td>
+	  <td>{{a.2}}</td>
+	  <td>{{a.3}}</td>
+	  <td>{{a.4}}</td>
+  </tbody>
+  {% endfor %}
+
+
+
+{% endif %}
+
+{% endblock %}

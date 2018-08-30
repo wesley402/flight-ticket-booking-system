@@ -1,0 +1,38 @@
+{% extends "admin/base.html" %}
+{% load i18n static %}
+
+{% block branding %}
+<h1 id="site-name" style="display:inline">
+	<a href="{% url 'admin:index' %}">Manager Page</a>
+</h1>
+{% endblock %}
+
+{% block content %}
+<form method="GET">
+<label>Please type in a flight number:</label></br>
+<input name="flight_no" type="text"></input></br>
+<button type="submmit">SUBMIT</button>
+</form></br></br>
+
+<table class="table table-hover">
+  <thead class="thead-dark">
+    <tr>
+	  <th scope="col">Flight Number</th>
+	  <th scope="col">Reservation Number</th>
+	  <th scope="col">Passengers</th>
+	  <th scope="col">Username</th>
+
+    </tr>
+  </thead>
+	{% for a in tuples %}
+  <tbody>
+	  <td>{{a.0}}</td>
+	  <td>{{a.1}}</td>
+	  <td>{{a.2}}</td>
+	  <td>{{a.3}}</td>
+
+  </tbody>
+  {% endfor %}
+</table>
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "admin/base.html" %}
+{% load i18n static %}
+
+{% block branding %}
+<h1 id="site-name" style="display:inline">
+	<a href="{% url 'admin:index' %}">Manager Page</a>
+</h1>
+{% endblock %}
+
+{% block content %}
+<table class="table table-hover">
+  <thead class="thead-dark">
+    <tr>
+	  <th scope="col">Username</th>
+	  <th scope="col">First Name</th>
+	  <th scope="col">Last Name</th>
+      <th scope="col">Revenue</th>
+    </tr>
+  </thead>
+	{%for a in tuples %}
+  <tbody>
+	  <td>{{a.0}}</td>
+	  <td>{{a.1}}</td>
+	  <td>{{a.2}}</td>
+	  <td>{{a.3}}</td>
+  </tbody>
+  {% endfor %}
+</table>
+
+{% endblock %}

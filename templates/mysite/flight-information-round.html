@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% block content %}
+<style>
+body, html {
+    margin-top:50px;
+
+}
+h1 {
+	color:#000;
+	font-size:50px;
+	margin-top:50px;
+	text-align:center;
+}
+
+</style>
+
+<html>
+<body>
+    <form action="{% url 'checkout' %}" method="GET">{% csrf_token %}
+    <fieldset>
+        <legend> YOUR FLIGHT ORDER </legend>
+        <span>Departure date: {{request.session.raw_dep_date}}</span></br>
+        {% if request.session.dst_num_of_stops == '0' %}
+        <span>I/D: {{dst_table.21}}</span></br>
+        <span name="airline_id" value="{{dst_table.0}}">Flight no: {{dst_table.0}}{{dst_table.1}}</span></br>
+        <span>Flying time: {{dst_table.22}} h </span></br>    
+        <span name="src_airport">Route: {{dst_table.2}}</span>
+        <span name="dash"> - </span>
+        <span name="dst_airport" value="{{dst_table.3}}">{{dst_table.3}}</span>
+        <span name="num_of_stops" value="0">(0 stop)</span></br>
+        <span name="src_time" value="{{dst_table.4}}">Time: {{dst_table.4}}</span>
+        <span name="dash"> - </span>
+        <span name="dst_time">{{dst_table.5}}</span>
+        <span name="arrive_day" style="color:red">+{{dst_table.8}}</span></br>
+        <span name="cabin" value="{{cabin}}">Class : {{request.session.cabin}}</span></br>
+        <span name="ppls">Number of passengers: {{request.session.num_of_psgs}}</span></br></br>
+        {% else %}
+        <span name="airline_id">Flight no: {{dst_table.0}}{{dst_table.1}} & {{dst_table.9}}{{dst_table.10}}</span>
+        <span name="flight_no"></span></br>
+        <span name="src_airport">Route: {{dst_table.2}}</span>
+        <span name="dash"> - </span>
+        <span> {{dst_table.20|time:"H"}} h {{dst_table.20|time:"i"}} m</span>
+        <span name="stop1_airport">in {{dst_table.3}}</span>
+        <span name="dash"> - </span>
+        <span name="dst_airport">{{dst_table.12}}</span>
+        <span name="num_of_stops">(1 stop)</span></br>
+        <span name="src_time">Time: {{dst_table.4}}</span>
+        <span name="dash"> - </span>
+        <span name="dst_time">{{dst_table.14}}</span>
+        <span name="arrive_day" style="color:red">+{{dst_table.18}}</span></br>
+        <span name="cabin">Class : {{request.session.cabin}}</span></br>
+        <span name="ppls">Number of passengers: {{request.session.num_of_psgs}}</span></br></br>
+        {% endif %}
+        <span>------------------------------------------------------</span></br></br>
+        {% if request.session.rtn_num_of_stops == '0' %}
+        <span>Return date: {{request.session.raw_rtn_date}}</span></br>
+        <span>I/D: {{rtn_table.21}}</span></br>
+        <span name="airline_id" value="{{rtn_table.0}}">Flight no: {{rtn_table.0}}{{rtn_table.1}}</span></br>
+        <span>Flying time: {{rtn_table.22}} h </span></br>
+        <span name="src_airport" value="{{rtn_table.2}}">Route: {{rtn_table.2}}</span>
+        <span name="dash"> - </span>
+        <span name="dst_airport" value="{{rtn_table.3}}">{{rtn_table.3}}</span>
+        <span name="num_of_stops" value="0">(0 stop)</span></br>
+        <span name="src_time" value="{{rtn_table.4}}">Time: {{rtn_table.4}}</span>
+        <span name="dash"> - </span>
+        <span name="dst_time" value="{{rtn_table.5}}">{{rtn_table.5}}</span>
+        <span name="arrive_day" style="color:red">+{{rtn_table.8}}</span></br>
+        <span name="cabin" value="{{cabin}}">Class : {{request.session.cabin}}</span></br>
+        <span name="ppls">Number of passengers: {{request.session.num_of_psgs}}</span></br></br>
+        {% else %}
+        <span name="airline_id">Flight no: {{rtn_table.0}}{{rtn_table.1}} & {{rtn_table.9}}{{rtn_table.10}}</span>
+        <span name="flight_no"></span></br>
+        <span name="src_airport">Route: {{rtn_table.2}}</span>
+        <span name="dash"> - </span>
+        <span> {{rtn_table.20|time:"H"}} h {{rtn_table.20|time:"i"}} m</span>
+        <span name="stop1_airport">in {{rtn_table.3}}</span>
+        <span name="dash"> - </span>
+        <span name="dst_airport">{{rtn_table.12}}</span>
+        <span name="num_of_stops">(1 stop)</span></br>
+        <span name="src_time">Time: {{rtn_table.4}}</span>
+        <span name="dash"> - </span>
+        <span name="dst_time">{{rtn_table.14}}</span>
+        <span name="arrive_day" style="color:red">+{{rtn_table.18}}</span></br>
+        <span name="cabin">Class : {{request.session.cabin}}</span></br>
+        <span name="ppls">Number of passengers: {{request.session.num_of_psgs}}</span></br></br>
+        {% endif %}
+        <span>------------------------------------------------------</span></br></br>
+        <span>Booking fee: {{request.session.booking_fee}}</span></br>
+        <span>Total fare: {{request.session.total_fare}}</span></br></br></br>
+
+        <div>
+            <button type="submit"> CONFIRM YOUR FLIGHT</button>
+        </div>
+    </fieldset>
+    </form>
+</body>
+
+
+</html>
+{% endblock content %}

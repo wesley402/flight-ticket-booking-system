@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% block content %}
+
+<style>
+body, html {
+    margin-top:50px;
+}
+
+table, h3 {
+    margin-left:20px;
+}
+</style>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <h3 style="font-size:30px">Travel Itinerary</h3></br>
+    <form method="POST">{% csrf_token %}
+    <table style="width:100%">
+      <tr>
+        <th>Airline</th>
+        <th>Flight</th>
+        <th>Depart</th>
+        <th>Arrive</th>
+        <th>From</th>
+        <th>To</th>
+        <th>Passengers</th>
+        <th>Class</th>
+      </tr>
+      {% for list in travel_tuples %}
+      <tr>
+        <td>{{list.2}}</td>
+        <td>{{list.3}}{{list.4}}</td>
+        <td>{{list.5}}</td>
+        <td>{{list.6}}</td>
+        <td>{{list.7}}</td>
+        <td>{{list.8}}</td>
+        <td>{{list.9}}</td>
+        <td>{{list.10}}</td>
+     </tr>
+      {% endfor %}
+    </table>
+    </form>
+
+</body>
+</html>
+
+{% endblock content %}
